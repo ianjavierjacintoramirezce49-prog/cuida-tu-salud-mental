@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MenteClara — Tu bienestar mental importa</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F7F4EE;
+    --bg2: #EDE8DF;
+    --card: #FFFFFF;
+    --text: #1A1714;
+    --muted: #6B6560;
+    --accent: #2E6B5A;
+    --accent2: #4A9880;
+    --accent3: #C4E8DE;
+    --warm: #D4845A;
+    --warm2: #F0C4A8;
+    --border: rgba(0,0,0,0.10);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ──────────── HERO ──────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    background: linear-gradient(160deg, #E8F5F0 0%, #F7F4EE 50%, #F5EDE3 100%);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 600px 400px at 20% 30%, rgba(46,107,90,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 300px at 80% 70%, rgba(212,132,90,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .logo {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+  }
+
+  .hero-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--accent3), var(--accent2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    font-size: 2rem;
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text);
+    max-width: 680px;
+    margin: 0 auto 1.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  .trust-row {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .trust-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent2);
+    border-radius: 50%;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 1rem 2.4rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 24px rgba(46,107,90,0.25);
+  }
+
+  .btn-primary:hover {
+    background: #235047;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(46,107,90,0.30);
+  }
+
+  .btn-primary svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s;
+  }
+
+  .btn-primary:hover svg { transform: translateX(3px); }
+
+  .hero-note {
+    margin-top: 1.2rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  /* ──────────── WHAT IS ──────────── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent2);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1.3;
+    max-width: 560px;
+    margin-bottom: 1.5rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    border: 1px solid var(--border);
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .card h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ──────────── DIVIDER ──────────── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0 2rem;
+  }
+
+  /* ──────────── FORM SECTION ──────────── */
+  .form-section {
+    background: linear-gradient(135deg, #2E6B5A 0%, #1A3D30 100%);
+    padding: 6rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .form-content { position: relative; max-width: 680px; margin: 0 auto; }
+
+  .form-section h2 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 1.2rem;
+  }
+
+  .form-section p {
+    color: rgba(255,255,255,0.72);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .steps-row {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+    flex-shrink: 0;
+  }
+
+  .step-arrow {
+    margin: 0 12px;
+    color: rgba(255,255,255,0.25);
+    font-size: 1rem;
+  }
+
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: var(--accent);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    padding: 1.1rem 2.6rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  }
+
+  .btn-white:hover {
+    background: #EDF8F4;
+    transform: translateY(-2px);
+  }
+
+  /* ──────────── STATS SECTION ──────────── */
+  #stats-section {
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: none;
+  }
+
+  #stats-section.visible { display: block; }
+
+  .stats-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Lora', serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ──────────── LEVEL BLOCK ──────────── */
+  .level-block {
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--border);
+  }
+
+  .level-block h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .level-block p {
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .level-low { background: #EAF5F0; }
+  .level-mid { background: #FEF8EC; }
+  .level-high { background: #FEEFEA; }
+
+  /* ──────────── RESOURCES ──────────── */
+  .resources-section {
+    background: var(--bg2);
+    padding: 5rem 2rem;
+  }
+
+  .resources-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .resources-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .resources-grid { grid-template-columns: 1fr; }
+    .steps-row { flex-direction: column; align-items: center; gap: 12px; }
+    .step-arrow { display: none; }
+  }
+
+  .resource-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  }
+
+  .resource-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+  }
+
+  .resource-info { flex: 1; }
+
+  .resource-type {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .resource-card h4 {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+
+  .resource-card p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* video type */
+  .type-video { color: #C0392B; }
+  .thumb-video { background: #FEEFEA; }
+
+  /* crisis type */
+  .type-crisis { color: #8B2FC9; }
+  .thumb-crisis { background: #F3E8FD; }
+
+  /* ──────────── FOOTER ──────────── */
+  footer {
+    background: #1A1714;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  /* ──────────── ANIMATION ──────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero .logo { animation-delay: 0.1s; }
+  .hero .hero-icon { animation-delay: 0.2s; }
+  .hero h1 { animation-delay: 0.3s; }
+  .hero .hero-sub { animation-delay: 0.4s; }
+  .hero .trust-row { animation-delay: 0.5s; }
+  .hero .btn-primary { animation-delay: 0.6s; }
+  .hero .hero-note { animation-delay: 0.7s; }
+
+  /* Pulse ring */
+  .pulse-ring {
+    position: relative;
+    display: inline-block;
+  }
+
+  .pulse-ring::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50px;
+    border: 2px solid rgba(46,107,90,0.3);
+    animation: pulse 2.5s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.04); opacity: 0.2; }
+  }
+
+  /* ──────────── iframe overlay ──────────── */
+  .form-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .form-overlay.active { display: flex; }
+
+  .form-modal {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 760px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .form-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0;
+  }
+
+  .form-modal-header span {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .close-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: #F4F4F4;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: #555;
+    transition: background 0.15s;
+  }
+
+  .close-btn:hover { background: #E0E0E0; }
+
+  .form-modal iframe {
+    flex: 1;
+    border: none;
+    width: 100%;
+  }
+
+  .form-complete-actions {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .btn-done {
+    flex: 1;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-done:hover { background: #235047; }
+</style>
+</head>
+<body>
+
+<!-- ──────────── HERO ──────────── -->
+<section class="hero">
+  <div class="logo">✦ MenteClara</div>
+
+  <div class="hero-icon" aria-hidden="true">🌿</div>
+
+  <h1>Tu bienestar mental<br><em>empieza aquí</em></h1>
+
+  <p class="hero-sub">
+    Responde un breve cuestionario gratuito y confidencial. En minutos conocerás tu estado emocional y recibirás recursos personalizados.
+  </p>
+
+  <div class="trust-row">
+    <span class="trust-item"><span class="trust-dot"></span> Completamente privado</span>
+    <span class="trust-item"><span class="trust-dot"></span> Sin registro necesario</span>
+    <span class="trust-item"><span class="trust-dot"></span> Menos de 5 minutos</span>
+  </div>
+
+  <div class="pulse-ring">
+    <button class="btn-primary" onclick="abrirFormulario()">
+      Comenzar cuestionario
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </div>
+
+  <p class="hero-note">🔒 Tus respuestas son anónimas y no se almacenan.</p>
+</section>
+
+<!-- ──────────── QUÉ EVALUAMOS ──────────── -->
+<section class="section">
+  <p class="section-label">¿Qué evaluamos?</p>
+  <h2 class="section-title">Un vistazo completo a tu salud emocional</h2>
+  <p style="color: var(--muted); max-width: 560px; line-height: 1.8;">El cuestionario fue diseñado para explorar diferentes dimensiones de tu bienestar mental, de forma clara y sin juicios.</p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon" style="background:#EAF5F0;">😌</div>
+      <h3>Estado de ánimo</h3>
+      <p>Cómo te has sentido emocionalmente en los últimos días y semanas.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:#F3E8FD;">😴</div>
+      <h3>Calidad del sueño</h3>
+      <p>Patrones de descanso y su impacto en tu energía diaria.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:#FEF8EC;">💬</div>
+      <h3>Relaciones sociales</h3>
+      <p>La calidad de tus vínculos y si encuentras apoyo en tu entorno.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:#FEEFEA;">⚡</div>
+      <h3>Niveles de estrés</h3>
+      <p>Factores que pueden estar generando tensión o desgaste emocional.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ──────────── CTA FORMULARIO ──────────── -->
+<section class="form-section" id="cuestionario">
+  <div class="form-content">
+    <p class="section-label" style="color:rgba(255,255,255,0.55);">Cuestionario gratuito</p>
+    <h2>¿Cómo está tu mente hoy?</h2>
+    <p>Responde honestamente. No hay respuestas correctas o incorrectas. Al terminar, recibirás una vista de tus resultados y recursos personalizados.</p>
+
+    <div class="steps-row">
+      <div class="step">
+        <span class="step-num">1</span>
+        Responde el formulario
+      </div>
+      <span class="step-arrow">→</span>
+      <div class="step">
+        <span class="step-num">2</span>
+        Ve tus estadísticas
+      </div>
+      <span class="step-arrow">→</span>
+      <div class="step">
+        <span class="step-num">3</span>
+        Recibe recursos
+      </div>
+    </div>
+
+    <a href="#" class="btn-white" onclick="abrirFormulario(); return false;">
+      🌱 Empezar el cuestionario ahora
+    </a>
+    <p style="margin-top:1rem; font-size:0.82rem; color:rgba(255,255,255,0.45);">Gratuito · Anónimo · Sin spam</p>
+  </div>
+</section>
+
+<!-- ──────────── ESTADÍSTICAS (se muestra después) ──────────── -->
+<section id="stats-section">
+  <div class="stats-intro">
+    <p class="section-label">Tus resultados</p>
+    <h2 class="section-title">Gracias por completar el cuestionario</h2>
+    <p style="color: var(--muted); max-width: 560px; margin: 0 auto; line-height: 1.8;">
+      Aquí te mostramos un resumen de lo que los datos reflejan. Recuerda: esto es solo una guía, no un diagnóstico.
+    </p>
+  </div>
+
+  <div class="stats-grid" id="stats-grid">
+    <!-- Llenado por JS -->
+  </div>
+
+  <div id="level-block" class="level-block level-low">
+    <h3 id="level-title"></h3>
+    <p id="level-text"></p>
+  </div>
+</section>
+
+<!-- ──────────── RECURSOS ──────────── -->
+<section class="resources-section" id="recursos-section" style="display:none;">
+  <div class="resources-inner">
+    <p class="section-label">Recursos recomendados</p>
+    <h2 class="section-title">Para seguir cuidando tu mente</h2>
+    <p style="color: var(--muted); max-width: 520px; line-height: 1.8;">Seleccionamos estos recursos según tu perfil de respuestas.</p>
+
+    <div class="resources-grid" id="resources-grid">
+      <!-- Llenado por JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ──────────── FOOTER ──────────── -->
+<footer>
+  <p><strong>MenteClara</strong> — Herramienta de orientación en salud mental.</p>
+  <p>Este sitio <strong>no reemplaza</strong> la consulta con un profesional de salud mental.</p>
+  <p style="margin-top:0.5rem;">Si estás en crisis, llama a la <strong>Línea de la Vida: 800 911 2000</strong> (México, gratuita 24/7).</p>
+  <p style="margin-top:0.5rem; font-size:0.78rem;">© 2025 MenteClara · Hecho con ❤️ para tu bienestar</p>
+</footer>
+
+<!-- ──────────── MODAL DEL FORMULARIO ──────────── -->
+<div class="form-overlay" id="formOverlay">
+  <div class="form-modal">
+    <div class="form-modal-header">
+      <span>🌿 Cuestionario de Bienestar Mental</span>
+      <button class="close-btn" onclick="cerrarFormulario()" aria-label="Cerrar">✕</button>
+    </div>
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSfowsae0FwmDxiHNnhrHbrakYIq6uZqr4JUVCpFUuYa7xfZUA/viewform?embedded=true"
+      title="Cuestionario de salud mental"
+      loading="lazy">
+      Cargando cuestionario...
+    </iframe>
+    <div class="form-complete-actions">
+      <button class="btn-done" onclick="formularioCompleto()">
+        ✅ Terminé el cuestionario — Ver mis resultados
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────── SCRIPTS ──────────── -->
+<script>
+  function abrirFormulario() {
+    document.getElementById('formOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarFormulario() {
+    document.getElementById('formOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  /* Simula obtener estadísticas del cuestionario.
+     En producción, estos datos vendrían del análisis de las respuestas
+     a través de la API de Google Forms o un backend. */
+  function generarEstadisticas() {
+    return {
+      nivel: Math.floor(Math.random() * 3), // 0=bajo, 1=medio, 2=alto
+      estado_animo: Math.floor(Math.random() * 40) + 40,
+      estres: Math.floor(Math.random() * 50) + 20,
+      sueno: Math.floor(Math.random() * 40) + 45,
+      apoyo_social: Math.floor(Math.random() * 40) + 50,
+    };
+  }
+
+  const recursosDB = {
+    bajo: [
+      {
+        tipo: 'video', thumb: '▶️', thumbClass: 'thumb-video',
+        tipoClass: 'type-video', tipoLabel: 'Video motivacional',
+        titulo: '5 minutos de meditación para empezar el día',
+        desc: 'Respiración guiada para calmar la mente y enfocarte.',
+        url: 'https://www.youtube.com/watch?v=inpok4MKVLM'
+      },
+      {
+        tipo: 'video', thumb: '▶️', thumbClass: 'thumb-video',
+        tipoClass: 'type-video', tipoLabel: 'Video motivacional',
+        titulo: 'Cómo manejar la ansiedad cotidiana',
+        desc: 'Técnicas simples de manejo emocional para el día a día.',
+        url: 'https://www.youtube.com/watch?v=WWloIAQpMcQ'
+      },
+      {
+        tipo: 'crisis', thumb: '🆘', thumbClass: 'thumb-crisis',
+        tipoClass: 'type-crisis', tipoLabel: 'Apoyo profesional',
+        titulo: 'Línea de la Vida — México',
+        desc: '800 911 2000 · Gratuita · 24 horas · Apoyo psicológico inmediato.',
+        url: 'https://www.gob.mx/salud/conasama/acciones-y-programas/linea-de-la-vida'
+      },
+      {
+        tipo: 'crisis', thumb: '💬', thumbClass: 'thumb-crisis',
+        tipoClass: 'type-crisis', tipoLabel: 'Recurso en línea',
+        titulo: 'Yo También — Salud Mental México',
+        desc: 'Plataforma de la Secretaría de Salud con recursos y orientación.',
+        url: 'https://yotambien.mx/'
+      }
+    ],
+    medio: [
+      {
+        tipo: 'video', thumb: '▶️', thumbClass: 'thumb-video',
+        tipoClass: 'type-video', tipoLabel: 'Video motivacional',
+        titulo: 'El poder de la vulnerabilidad — Brené Brown',
+        desc: 'Una de las charlas TED más vistas sobre conexión humana y emociones.',
+        url: 'https://www.youtube.com/watch?v=iCvmsMzlF7o'
+      },
+      {
+        tipo: 'video', thumb: '▶️', thumbClass: 'thumb-video',
+        tipoClass: 'type-video', tipoLabel: 'Video motivacional',
+        titulo: 'Cómo construir resiliencia mental',
+        desc: 'Estrategias prácticas para desarrollar fortaleza emocional.',
+        url: 'https://www.youtube.com/watch?v=NWH8N-BvhAw'
+      },
+      {
+        tipo: 'crisis', thumb: '🏥', thumbClass: 'thumb-crisis',
+        tipoClass: 'type-crisis', tipoLabel: 'Directorio',
+        titulo: 'SAPTEL — Apoyo Psicológico Telefónico',
+        desc: 'Tel. 55 5259-8121 · Servicio de orientación emocional gratuito.',
+        url: 'https://www.saptel.org.mx/'
+      },
+      {
+        tipo: 'crisis', thumb: '💬', thumbClass: 'thumb-crisis',
+        tipoClass: 'type-crisis', tipoLabel: 'Recurso en línea',
+        titulo: 'Instituto Mexicano de Psicología',
+        desc: 'Directorio de psicólogos y clínicas a nivel nacional.',
+        url: 'https://www.impsico.com.mx/'
+      }
+    ],
+    alto: [
+      {
+        tipo: 'video', thumb: '▶️', thumbClass: 'thumb-video',
+        tipoClass: 'type-video', tipoLabel: 'Video de crisis',
+        titulo: 'Cómo salir de una crisis emocional',
+        desc: 'Técnicas de regulación emocional para momentos difíciles.',
+        url: 'https://www.youtube.com/watch?v=RVA2N6tX2cg'
+      },
+      {
+        tipo: 'video', thumb: '▶️', thumbClass: 'thumb-video',
+        tipoClass: 'type-video', tipoLabel: 'Video motivacional',
+        titulo: 'No estás solo — mensaje de esperanza',
+        desc: 'Un mensaje de apoyo para quienes están pasando momentos muy difíciles.',
+        url: 'https://www.youtube.com/watch?v=y84eSSasLNM'
+      },
+      {
+        tipo: 'crisis', thumb: '🆘', thumbClass: 'thumb-crisis',
+        tipoClass: 'type-crisis', tipoLabel: '¡URGENTE! Línea de crisis',
+        titulo: 'Línea de la Vida — Llama ahora',
+        desc: '📞 800 911 2000 · Gratis · 24/7 · Atienden psicólogos especializados.',
+        url: 'https://www.gob.mx/salud/conasama/acciones-y-programas/linea-de-la-vida'
+      },
+      {
+        tipo: 'crisis', thumb: '🏥', thumbClass: 'thumb-crisis',
+        tipoClass: 'type-crisis', tipoLabel: 'Atención presencial',
+        titulo: 'Centro de Salud Mental (CAISAME)',
+        desc: 'Clínicas de salud mental de la Secretaría de Salud en todo México.',
+        url: 'https://www.gob.mx/salud/acciones-y-programas/centros-de-atencion-integral-a-la-salud-mental-y-adicciones'
+      }
+    ]
+  };
+
+  const levelConfig = {
+    0: {
+      clase: 'level-low',
+      titulo: '🌱 Tu bienestar parece estable',
+      texto: 'Tus respuestas sugieren que atraviesas un momento relativamente equilibrado. Es un excelente momento para fortalecer tus hábitos de bienestar y continuar cuidándote. Pequeñas prácticas diarias como meditación, ejercicio y conexión social pueden ayudarte a mantener este estado.'
+    },
+    1: {
+      clase: 'level-mid',
+      titulo: '⚡ Hay algunas señales de estrés',
+      texto: 'Parece que estás experimentando cierto nivel de estrés o tensión emocional. Es completamente normal en momentos de presión. Sin embargo, es importante prestar atención a estas señales y buscar formas de equilibrarte. Considera hablar con alguien de confianza o explorar los recursos a continuación.'
+    },
+    2: {
+      clase: 'level-high',
+      titulo: '🤝 Es momento de buscar apoyo',
+      texto: 'Tus respuestas muestran niveles significativos de malestar emocional. No tienes que atravesar esto solo/a. Buscar apoyo profesional es una señal de fortaleza, no de debilidad. Te recomendamos contactar a uno de los servicios de ayuda que aparecen a continuación. Estamos contigo.'
+    }
+  };
+
+  function formularioCompleto() {
+    cerrarFormulario();
+
+    const stats = generarEstadisticas();
+    const nivel = stats.nivel;
+    const config = levelConfig[nivel];
+    const recursos = recursosDB[nivel === 0 ? 'bajo' : nivel === 1 ? 'medio' : 'alto'];
+
+    // Mostrar stats
+    const statsSection = document.getElementById('stats-section');
+    statsSection.classList.add('visible');
+
+    const statsGrid = document.getElementById('stats-grid');
+    const metricas = [
+      { num: stats.estado_animo + '%', label: 'Estado de ánimo positivo', color: '#2E6B5A' },
+      { num: stats.sueno + '%', label: 'Calidad del sueño', color: '#4A9880' },
+      { num: stats.apoyo_social + '%', label: 'Apoyo social percibido', color: '#8B6BAE' },
+      { num: stats.estres + '%', label: 'Nivel de estrés', color: '#D4845A' },
+    ];
+
+    statsGrid.innerHTML = metricas.map(m => `
+      <div class="stat-card">
+        <div class="stat-num" style="color:${m.color}">${m.num}</div>
+        <div class="stat-label">${m.label}</div>
+      </div>
+    `).join('');
+
+    // Mostrar bloque de nivel
+    const block = document.getElementById('level-block');
+    block.className = 'level-block ' + config.clase;
+    document.getElementById('level-title').textContent = config.titulo;
+    document.getElementById('level-text').textContent = config.texto;
+
+    // Mostrar recursos
+    const recursosSection = document.getElementById('recursos-section');
+    recursosSection.style.display = 'block';
+    const grid = document.getElementById('resources-grid');
+
+    grid.innerHTML = recursos.map(r => `
+      <a href="${r.url}" target="_blank" rel="noopener noreferrer" class="resource-card">
+        <div class="resource-thumb ${r.thumbClass}">${r.thumb}</div>
+        <div class="resource-info">
+          <p class="resource-type ${r.tipoClass}">${r.tipoLabel}</p>
+          <h4>${r.titulo}</h4>
+          <p>${r.desc}</p>
+        </div>
+      </a>
+    `).join('');
+
+    // Scroll suave a resultados
+    setTimeout(() => {
+      statsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
+
+  // Cerrar modal con Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') cerrarFormulario();
+  });
+</script>
+
+</body>
+</html>
